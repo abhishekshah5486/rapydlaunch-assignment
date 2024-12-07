@@ -3,10 +3,12 @@ const dotenv = require('dotenv');
 const connectDB = require('./config/mongoose');
 
 dotenv.config();
-
 const app = express();
-
 app.use(express.json()); // Parses JSON payloads
+
+const adminRoutes = require('./routes/adminRoutes');
+const userRoutes = require('./routes/userRoutes');
+app.use('/admins', adminRoutes);
 
 connectDB();
 
