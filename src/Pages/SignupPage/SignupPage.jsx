@@ -1,11 +1,10 @@
 import React, {useEffect} from 'react';
-import './RegisterPage.css';
-import googleIcon from '../../Assets/Images/google.png';
-import intelliMailerLogo from '../../Assets/Images/reachinbox_ai_logo.jpeg';
+import './SignupPage.scss';
+import google_icon from '../../assets/icons/google.png';
 import { Link } from 'react-router-dom';
 import { useNavigate } from 'react-router-dom';
-import { registerUser } from '../../APICalls/users';
-import UserContext from '../../Context/UserContext';
+import { register_user } from '../../APICalls/users';
+import UserContext from '../../Context/userContext';
 
 function RegisterPage() {
     const [email, setEmail] = React.useState('');
@@ -21,14 +20,10 @@ function RegisterPage() {
   
     const handleCreateAccount = async () => {
         try {
-            const values = {
-                email,
-                password
-            };
-            const response = await registerUser(values);
+            const response = await register_user(email, password);
             if (response.success) {
                 alert('Account created successfully');
-                navigate('/users/login');
+                navigate('/login');
             } else {
                 alert(response.message);
             }
@@ -40,12 +35,6 @@ function RegisterPage() {
     return (
         <>
             <div className="log-in-page">
-                <div className="log-in-page-header">
-                    <div className="mailsense-logo">
-                        {/* <img className="invert mailsense-logo" src={intelliMailerLogo} alt="" /> */}
-                        <h1>REACHINBOX</h1>
-                    </div>
-                </div>
             </div>
             <div className="sign-up-form-section">
                 <div className="sign-up-form">
@@ -81,7 +70,7 @@ function RegisterPage() {
                             <li className="google-login">
                                 <button className="google-login-btn">
                                     <div className="google-login-div xR230zZLI">
-                                        <img src={googleIcon} alt="" className="new-google-icon" />
+                                        <img src={google_icon} alt="" className="new-google-icon" />
                                         <div className="xR230zZTp">
                                             <h3>Continue with Google</h3>
                                         </div>   
@@ -94,7 +83,7 @@ function RegisterPage() {
                     <div className="log-in-account">
                         <h3 id="xZA009Tz">Already have an account?</h3>
                         <h3 id="xZA009Ta">
-                            <Link to='/users/login' className='link'>Log in here</Link>
+                            <Link to='/login' className='link'>Log in here</Link>
                         </h3>
                     </div>
                 </div>

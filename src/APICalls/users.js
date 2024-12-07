@@ -3,7 +3,7 @@ const { axiosInstance } = require('./index');
 export const login_user = async (email, password) => {
     try {
         
-        const response = await axiosInstance.post('/users/login', {
+        const response = await axiosInstance.post('users/login', {
             email,
             password
         });
@@ -21,8 +21,7 @@ export const login_user = async (email, password) => {
 
 export const register_user = async (email, password) => {
     try {
-        
-        const response = await axiosInstance.post('/users/register', {
+        const response = await axiosInstance.post('users/register', {
             email,
             password
         });

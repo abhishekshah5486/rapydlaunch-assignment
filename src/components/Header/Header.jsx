@@ -4,6 +4,8 @@ import light_mode_icon from '../../assets/icons/day-mode.png';
 import dark_mode_icon from '../../assets/icons/night-mode.png';
 import './Header.scss';
 
+import { Link } from 'react-router-dom';
+
 function Header() {
     const [isToggleClicked, setIsToggleClicked] = useState(false);
     return (
@@ -26,7 +28,7 @@ function Header() {
                 >
                     <img src={isToggleClicked ? light_mode_icon : dark_mode_icon} alt="" />
                 </div>
-                <button className='login-btn'>LOGIN</button>
+                <Link to='/login' style={{textDecoration: 'none'}}><button className='login-btn'>LOGIN</button></Link>
             </div>
         </div>
     )

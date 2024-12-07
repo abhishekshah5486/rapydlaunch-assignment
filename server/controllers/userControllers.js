@@ -3,7 +3,6 @@ const bcrypt = require('bcryptjs');
 
 exports.register_user = async (req, res) => {
     try {
-
         const { email, password } = req.body;
         // Check if the email already registered
         const email_already_registered = await userModel.findOne({ email: email, role: 'student' });
@@ -27,7 +26,7 @@ exports.register_user = async (req, res) => {
         return res.status(201).send({
             success: true,
             message: "User registered successfully.",
-            user: newUser
+            data: newUser
         })
     } catch (err) {
         return res.status(500).json({
@@ -55,7 +54,7 @@ exports.login_user = async (req, res) => {
         }
 
         res.status(200).json({
-            sucess: true,
+            success: true,
             message: 'Successfully logged in.',
             data: user,
         });

@@ -1,48 +1,54 @@
 import React, {useContext, useEffect} from 'react';
-import './LoginPage.css';
-// import intelliMailerLogo from '../../Assets/Images/reachinbox_ai_logo.jpeg';
-import googleIcon from '../../Assets/Images/google.png';
+import './LoginPage.scss';
+import google_icon from '../../assets/icons/google.png';
 import { Link } from 'react-router-dom';
 import { useNavigate } from 'react-router-dom';
-import { loginUser } from '../../APICalls/users';
-// import UserContext from '../../Context/UserContext';
-// import { getCurrentUser } from '../../APICalls/userAccounts';
+import { login_user } from '../../APICalls/users';
+import UserContext from '../../Context/userContext';
 
 function LoginPage() {
     const [email, setEmail] = React.useState('');
     const [password, setPassword] = React.useState('');
     const navigate = useNavigate(); 
-    const {currentUser, setCurrentUser} = useContext(UserContext);
+    const { setUser } = useContext(UserContext);
 
     useEffect(() => {
 
     }, []);
 
-    useEffect(() => { 
-        if (currentUser){
-          navigate('/home/email-accounts');
-        }
-    }, [currentUser, navigate])
+    // useEffect(() => { 
+    //     if (currentUser){
+    //       navigate('/home/email-accounts');
+    //     }
+    // }, [currentUser, navigate])
     
     const handleLoginLogic = async () => {
         try {
-            const values = {
-                email,
-                password
-            }
-            const response = await loginUser(values);
-            if (response.success){
+            const response = await login_user(email, password);
+            if (response?.success){
                 alert('Login successful');
                 // Set the token received in response to local storage
+
+                // Set the user context
+                setUser(response?.data);
+                
                 const userData = {
-                    userId: response.user.userId,
-                    email: response.user.email,
-                    isLoggedIn: response.user.isLoggedIn,
+                    userId: response?.data?.userId,
+                    email: response?.data?.email,
+                    isLoggedIn: response?.data?.isLoggedIn,
                 };
-                setCurrentUser(userData);
                 // Persisting current user using localstorage
                 localStorage.setItem('currentUser', JSON.stringify(userData));
-                navigate('/home/email-accounts');
+                if (response?.data?.role === 'faculty'){
+                    navigate('/faculty-dashboard');
+                }
+                else if (response?.data?.role === 'student'){
+                    console.log("Hi")
+                    navigate('/student-dashboard');
+                }
+                else if (response?.data?.role === 'admin'){
+                    navigate('/admin-dashboard');
+                }
             }
             else alert(response.message);
         } catch (err) {
@@ -52,23 +58,17 @@ function LoginPage() {
 
     return (
         <div className="log-in-page">
-            <div className="log-in-page-header">
-                <div className="intelliMailer-logo">
-                    <img className="invert spotify-logo-svg" src={intelliMailerLogo} alt="" />
-                    <h1>REACHINBOX</h1>
-                </div>
-            </div>
             <div className="log-in-page-down-content">
                 <div className="log-in-page-form">
                     <div className="log-in-page-heading">
-                        <h1>Log in to ReachInbox</h1>
+                        <h1>Log in to Scaler</h1>
                     </div>
                     <div className="log-in-accounts">
                         <ul>
                             <li className="google-login">
                                 <button className="google-login-btn">
                                     <div className="google-login-div xR230zZLI">
-                                        <img src={googleIcon} alt="" className="new-google-icon" />
+                                        <img src={google_icon} alt="" className="new-google-icon" />
                                         <div className="xR230zZTp">
                                             <h3>Continue with Google</h3>
                                         </div>   
@@ -103,7 +103,7 @@ function LoginPage() {
                     <div className="create-account">
                         <h3 id="xZA009Tz">Don't have an account?</h3>
                         <h3 id="xZA009Ta">
-                            <Link to="/users/register" className='link'>Sign up for ReachInbox</Link>
+                            <Link to="/signup" className='link'>Sign up NOW!</Link>
                         </h3>
                     </div>
                 </div>
