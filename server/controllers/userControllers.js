@@ -69,3 +69,85 @@ exports.login_user = async (req, res) => {
 
     }
 }
+
+
+// Read User Profile
+exports.get_user_profile = async (req, res) => {
+    try {
+
+        const userId = req.params.userId;
+        const user = await userModel.findOne({userId: userId});
+
+        if (!user) {
+            return res.status(404).json({ message: 'User not found.' });
+        }
+
+        return res.status(200).json({
+            success: true,
+            data: user
+        });
+
+    } catch (err) {
+
+        return res.status(500).json({
+            success: false,
+            message: "Server error.",
+            error: err.message
+        });
+
+    }
+}
+
+// Update User Profile
+exports.update_user_profile = async (req, res) => {
+    try {
+
+        const userId = req.params.userId;
+        const updatedUser = await userModel.findOneAndUpdate({userId}, req.body, { new: true });
+
+        if (!updatedUser) {
+            return res.status(404).json({ message: 'User not found.' });
+        }
+
+        return res.status(200).json({
+            success: true,
+            message: "User profile updated successfully.",
+            data: updatedUser
+        });
+
+    } catch (err) {
+
+        return res.status(500).json({
+            success: false,
+            message: "Server error.",
+            error: err.message
+        });
+        
+    }
+}
+
+// Delete User Profile
+exports.delete_user_profile = async (req, res) => {
+    try {
+
+        const userId = req.params.userId;
+        const deletedUser = await userModel.findOneAndDelete({userId});
+
+        if (!deletedUser) {
+            return res.status(404).json({ message: 'User not found.' });
+        }
+
+        return res.status(200).json({
+            success: true,
+            message: "User profile deleted successfully."
+        });
+    } catch (err) {
+        return res.status(500).json({
+            success: false,
+            message: "Server error.",
+            error: err.message
+        });
+    }
+}
+
+// Retrieve 
