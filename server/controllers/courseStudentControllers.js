@@ -1,5 +1,7 @@
 const course_student_model = require('../models/course_student_model');
 const courseModel = require('../models/courseModel');
+const userModel = require('../models/userModel');
+const send_course_purchase_email_notification = require('./emailController');
 
 // Enroll a student in a course
 exports.enroll_student_in_course = async (req, res) => {
@@ -13,10 +15,18 @@ exports.enroll_student_in_course = async (req, res) => {
 
         await newCourseStudent.save();
 
+        // Send email notification to student
+        const course_details = await courseModel.findOne({ courseId: courseId });
+        const student_details = await userModel.findOne({ userId: studentId });
+
+        const student_email = student_details.email;
+        const email_response = await send_course_purchase_email_notification(student_email, course_details);
+
         return res.status(200).json({
             success: true,
             message: 'Student enrolled in course successfully.',
             data: newCourseStudent,
+            email_response,
         });
 
     } catch (err) {
