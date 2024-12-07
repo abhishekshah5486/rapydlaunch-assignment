@@ -49,9 +49,9 @@ const Purchases = () => {
             <h2 className='heading'>My Purchases</h2>
             {purchasedCourses && purchasedCourses.length > 0 ? (
                 <div className="courses">
-                    {purchasedCourses.map((course) => (
+                    {purchasedCourses.map((course, index) => (
                         <CourseCardComponent
-                            key={course.courseId}
+                            key={index}
                             courseTitle={course.courseTitle}
                             courseDescription={course.courseDescription}
                             coursePrice={course.coursePrice}

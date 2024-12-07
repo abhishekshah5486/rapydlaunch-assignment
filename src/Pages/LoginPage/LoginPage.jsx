@@ -39,7 +39,7 @@ function LoginPage() {
                 };
                 // Persisting current user using localstorage
                 localStorage.setItem('user', JSON.stringify(userData));
-                if (response?.data?.role === 'faculty'){
+                if (response?.data?.role === 'instructor'){
                     navigate('/faculty-dashboard');
                 }
                 else if (response?.data?.role === 'student'){

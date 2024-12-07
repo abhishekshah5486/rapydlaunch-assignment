@@ -2,7 +2,6 @@ const { axiosInstance } = require('./index');
 
 export const login_user = async (email, password) => {
     try {
-        
         const response = await axiosInstance.post('users/login', {
             email,
             password

@@ -42,7 +42,7 @@ exports.login_user = async (req, res) => {
     try {
         
         const { email, password } = req.body;
-        const user = await userModel.findOne({ email: email, role: 'student' });
+        const user = await userModel.findOne({ email: email });
 
         if (!user) {
             return res.status(400).json({ message: 'Invalid email id.' });

@@ -3,7 +3,7 @@ import LandingPage from './Pages/LandingPage';
 import LoginPage from './Pages/LoginPage';
 import SignupPage from './Pages/SignupPage';
 import StudentDashboard from './Pages/StudentDashboard';
-import FacultyDashboard from './Pages/FacultyDashboard';
+import FacultyDashboard from './Pages/FacultyDashboard/FacultyDashboard';
 import { BrowserRouter, Route, Routes } from 'react-router-dom';
 
 function App() {
