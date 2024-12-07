@@ -49,7 +49,10 @@ exports.create_instructor_account = async (req, res) => {
         const hashed_password = await bcrypt.hash(password, salt);  
         req.body.password = hashed_password;
 
-        const new_instructor = new userModel(req.body);
+        const new_instructor = new userModel({
+            ...req.body,
+            role: 'instructor',
+        });
         await new_instructor.save();
 
         res.status(201).json({
