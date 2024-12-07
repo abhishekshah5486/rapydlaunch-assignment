@@ -15,9 +15,11 @@ app.use(cors({
 const adminRoutes = require('./routes/adminRoutes');
 const userRoutes = require('./routes/userRoutes');
 const courseRoutes = require('./routes/courseRoutes');
+const courseStudentRoutes = require('./routes/courseStudentRoutes');
 app.use('/admins', adminRoutes);
 app.use('/users', userRoutes);
 app.use('/courses', courseRoutes);
+app.use('/course-students', courseStudentRoutes);
 
 connectDB();
 
