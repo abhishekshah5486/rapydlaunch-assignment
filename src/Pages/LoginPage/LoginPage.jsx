@@ -38,12 +38,11 @@ function LoginPage() {
                     isLoggedIn: response?.data?.isLoggedIn,
                 };
                 // Persisting current user using localstorage
-                localStorage.setItem('currentUser', JSON.stringify(userData));
+                localStorage.setItem('user', JSON.stringify(userData));
                 if (response?.data?.role === 'faculty'){
                     navigate('/faculty-dashboard');
                 }
                 else if (response?.data?.role === 'student'){
-                    console.log("Hi")
                     navigate('/student-dashboard');
                 }
                 else if (response?.data?.role === 'admin'){

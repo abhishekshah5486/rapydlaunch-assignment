@@ -2,8 +2,9 @@ import React, { useState } from "react";
 import UserContext from "./userContext";
 
 const UserContextProvider = ({children}) => {
-    const [user, setUser] = useState({
-        email: "abhishek.shah5486@gmail.com",
+    const [user, setUser] = useState(() => {
+        const storedUser = localStorage.getItem('user');
+        return storedUser ? JSON.parse(storedUser) : {};
     });
 
     return(

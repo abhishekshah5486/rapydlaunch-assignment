@@ -2,7 +2,7 @@ const { axiosInstance } = require('./index');
 
 export const enroll_student_in_course = async (courseId, studentId) => {
     try {
-        
+        console.log("Course Purchase Request: ", courseId, studentId);
         const response = await axiosInstance.post('/course-students/enroll', { courseId, studentId });
         return response.data;
 

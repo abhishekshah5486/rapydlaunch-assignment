@@ -41,6 +41,11 @@
             background-color: #dee2e6;
             margin-top: 2rem;
         }
+        .clicked-btn{
+            background-color: white;
+            color: #0041ca;
+            border: 2px solid #0041ca;
+        }
     }
     .logout-btn{
         outline: none;
@@ -54,9 +59,4 @@
         cursor: pointer;
         margin-top: 2rem;
     }
-}
-.clicked-btn{
-    background-color: white;
-    color: #0041ca;
-    border: 2px solid #0041ca;
 }

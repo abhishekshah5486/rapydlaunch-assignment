@@ -16,7 +16,7 @@ function StudentDashboardTabs() {
 
     return (
         <div style={{display: 'flex'}}>
-            <Sidebar setActiveTab={setActiveTab}/>
+            <Sidebar setActiveTab={setActiveTab} activeTab={activeTab}/>
             {ContentComponent && <ContentComponent />}
         </div>
     )
