@@ -5,5 +5,7 @@ const courseStudentControllers = require('../controllers/courseStudentController
 
 // Enroll a student in a course
 router.post('/enroll', courseStudentControllers.enroll_student_in_course);
+// Retrieve all courses by student id
+router.get('/student/:studentId', courseStudentControllers.retrieve_courses_by_student_id);
 
 module.exports = router;

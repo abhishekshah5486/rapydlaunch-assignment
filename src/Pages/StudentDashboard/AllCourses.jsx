@@ -1,4 +1,5 @@
-import React from 'react'
+import React, { useState, useEffect } from 'react'
+import { retrieve_all_courses } from '../../APICalls/course';
 import './AllCourses.scss'
 
 const CourseCardComponent = ({
@@ -31,68 +32,39 @@ const CourseCardComponent = ({
 }
 
 function AllCourses() {
-  return (
-    <div className='all-courses'>
-        <h2 className='heading'>Courses</h2>
-        <div className="courses">
-            <CourseCardComponent 
-                courseTitle='Complete Web Development + Devops + Blockchain Cohort'
-                courseDescription='Complete syllabus - https://blog.100xdevs.com/
-Starts 2nd Au..'
-                coursePrice={8499}
-                discount={16.84}
-                validity='2 Years'
-                imgUrl='https://appxcontent.kaxa.in/paid_course3/2024-07-07-0.07833836520330406.png'
-            />
-            <CourseCardComponent 
-                courseTitle='Complete Web Development + Devops + Blockchain Cohort'
-                courseDescription='Complete syllabus - https://blog.100xdevs.com/
-Starts 2nd Au..'
-                coursePrice={8499}
-                discount={16.84}
-                validity='2 Years'
-                imgUrl='https://appxcontent.kaxa.in/paid_course3/2024-07-07-0.07833836520330406.png'
-            />
-            <CourseCardComponent 
-                courseTitle='Complete Web Development + Devops + Blockchain Cohort'
-                courseDescription='Complete syllabus - https://blog.100xdevs.com/
-Starts 2nd Au..'
-                coursePrice={8499}
-                discount={16.84}
-                validity='2 Years'
-                imgUrl='https://appxcontent.kaxa.in/paid_course3/2024-07-07-0.07833836520330406.png'
-            />
-            <CourseCardComponent 
-                courseTitle='Complete Web Development + Devops + Blockchain Cohort'
-                courseDescription='Complete syllabus - https://blog.100xdevs.com/
-Starts 2nd Au..'
-                coursePrice={8499}
-                discount={16.84}
-                validity='2 Years'
-                imgUrl='https://appxcontent.kaxa.in/paid_course3/2024-07-07-0.07833836520330406.png'
-            />
-            <CourseCardComponent 
-                courseTitle='Complete Web Development + Devops + Blockchain Cohort'
-                courseDescription='Complete syllabus - https://blog.100xdevs.com/
-Starts 2nd Au..'
-                coursePrice={8499}
-                discount={16.84}
-                validity='2 Years'
-                imgUrl='https://appxcontent.kaxa.in/paid_course3/2024-07-07-0.07833836520330406.png'
-            />
-            <CourseCardComponent 
-                courseTitle='Complete Web Development + Devops + Blockchain Cohort'
-                courseDescription='Complete syllabus - https://blog.100xdevs.com/
-Starts 2nd Au..'
-                coursePrice={8499}
-                discount={16.84}
-                validity='2 Years'
-                imgUrl='https://appxcontent.kaxa.in/paid_course3/2024-07-07-0.07833836520330406.png'
-            />
+    const [courses, setCourses] = useState([]);
 
-        </div>`
-    </div>
-  )
+    useEffect(() => {
+        retrieve_all_courses()
+        .then((response) => {
+            setCourses(response.data);
+        })
+        .catch((error) => {
+            console.error(error);
+        })
+    })
+
+    return (
+        <div className='all-courses'>
+            <h2 className='heading'>Courses</h2>
+            <div className="courses">
+                {
+                    courses.map((course) => {
+                        return (
+                            <CourseCardComponent
+                                courseTitle={course.courseTitle}
+                                courseDescription={course.courseDescription}
+                                coursePrice={course.coursePrice}
+                                discount={course.discount}
+                                validity={course.validity}
+                                imgUrl={course.imgUrl}
+                            />
+                        )
+                    })
+                }
+            </div>
+        </div>
+    )
 }
 
 export default AllCourses
