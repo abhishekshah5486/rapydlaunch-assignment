@@ -1,5 +1,5 @@
 const nodeMailer = require('nodemailer');
-const emailConfig = require('../config/emailConfig');
+const emailConfig = require('../config/email');
 
 exports.send_course_purchase_email_notification = async (student_email, course_details) => {
     const transporter = nodeMailer.createTransport(emailConfig);
@@ -28,22 +28,12 @@ exports.send_course_purchase_email_notification = async (student_email, course_d
 
     try {
 
-        transporter.sendMail(mailOptions, (error, info) => {
-            if (error) {
-                return {
-                    success: false,
-                    message: 'Error sending purchase email.',
-                    error: error.message,
-                };
-            }
-
-            return {
-                success: true,
-                message: 'Email sent successfully.',
-                data: info.response,
-            };
-
-        });
+        const info = await transporter.sendMail(mailOptions); 
+        return {
+            success: true,
+            message: 'Email sent successfully.',
+            data: info.response,
+        };
 
     } catch (err) {
         

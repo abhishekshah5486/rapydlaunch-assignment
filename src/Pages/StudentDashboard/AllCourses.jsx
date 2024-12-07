@@ -59,7 +59,7 @@ function AllCourses() {
                     <p style={{fontSize: '14px'}}>{courseDescription}</p>
                     <div className="course-price">
                         <p><b>₹{coursePriceDiscounted}</b></p>
-                        <p>₹{coursePrice}</p>
+                        <p style={{textDecoration: 'line-through'}}>₹{coursePrice}</p>
                         <p style={{position: 'absolute', right: '1rem', color: '#25c16f'}}><b>{discount}%</b></p>
                     </div>
                     <p style={{fontSize: '14px'}}><b>Validity: {validity}</b></p>
