@@ -13,7 +13,7 @@ function FacultyDashboardTabs() {
     return (
         <div style={{display: 'flex'}}>
             <Sidebar setActiveTab={setActiveTab} activeTab={activeTab}/>
-            {ContentComponent && <ContentComponent />}
+            {ContentComponent && <ContentComponent setActiveTab={setActiveTab}/>}
         </div>
     )
 }

@@ -1,6 +1,7 @@
 *{
     margin: 0px;
     padding: 0px;
+    box-sizing: border-box;
 }
 .hero-section{
     // border: 1px solid red;
@@ -112,12 +113,14 @@
     }
     .form-group{
         margin-bottom: 1rem;
+        width: 40vw;
+
         p{
             font-size: 18px;
             margin-bottom: 1rem;
         }
         input{
-            width: 40vw;
+            width: 100%;
             outline: none;
             border: none;
             background-color: #fafafa;
@@ -134,6 +137,20 @@
             padding: 0.75rem 1rem;
             font-size: 18px;
         }
+        select {
+            width: 40vw;
+            outline: none;
+            border: none;
+            background-color: #fafafa;
+            border: 1px solid #d4d4d4;
+            padding: 0.75rem 1rem;
+            font-size: 18px;
+            position: relative; /* Required for ::after */
+            appearance: none; /* Removes default browser styling */
+            -webkit-appearance: none; /* Chrome */
+            -moz-appearance: none; /* Firefox */
+        }
+
         input::placeholder{
             font-size: 18px;
         }
@@ -146,5 +163,14 @@
         border: none;
         background-color: #b30158;
         color: white;
+    }
+    .existing-account{
+        font-size: 18px;
+        margin-top: 2rem;
+
+        a{
+            color: #b30158;
+            text-decoration: none;
+        }
     }
 }

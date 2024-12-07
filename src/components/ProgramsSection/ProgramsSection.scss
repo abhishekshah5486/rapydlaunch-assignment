@@ -1,0 +1,55 @@
+.programs-section{
+    display: flex;
+    flex-direction: column;
+    padding: 2rem 4rem;
+    gap: 3rem;
+
+    h2{
+        text-align: center;
+        color: #171717;
+        font-size: 48px;
+        font-weight: 600;
+    }
+
+    .programs-container{
+        display: flex;
+        align-items: center;
+        justify-content: center;
+        gap: 3rem;
+    }
+}
+
+.program-card{
+    box-sizing: border-box;
+    box-shadow: 0px 4px 6px rgba(0, 0, 0, 0.1);
+    
+    img{
+        height: 12rem;
+        width: 22vw;
+    }
+    .program-details{
+        display: flex;
+        flex-direction: column;
+        padding: 2rem;
+
+        h2{
+            font-size: 20px;
+            text-wrap: wrap;
+            width: 15rem;
+            text-align: start;
+            margin-bottom: 1.5rem;
+        }
+        .btn-group{
+            display: flex;
+            flex-direction: column;
+            gap: 0.5rem;
+    
+            button{
+                outline: none;
+                border: none;
+                font-size: 18px;
+                padding: 1rem;
+            }
+        }
+    }
+}

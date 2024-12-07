@@ -1,12 +1,9 @@
 import React, { useState, useEffect, useContext } from 'react'
 import { retrieve_all_courses } from '../../APICalls/course';
-import UserContext from '../../Context/userContext';
-import { enroll_student_in_course } from '../../APICalls/course_student';
 import './AllCourses.scss'
 
-function AllCourses() {
+const AllCourses = ({ setActiveTab }) => {
     const [courses, setCourses] = useState([]);
-    const { user } = useContext(UserContext);
 
     useEffect(() => {
         retrieve_all_courses()
@@ -18,27 +15,6 @@ function AllCourses() {
         })
     }, []);
 
-    const handle_course_purchase = async (course_id) => {
-
-        try {
-
-            const courseId = course_id;
-            const studentId = user?.userId;
-
-            const response = await enroll_student_in_course(courseId, studentId);
-            if (response.success) {
-                alert('Course purchased successfully.');
-            }
-
-        } catch (err) {
-            
-            console.error(err);
-            alert('Internal server error.');
-
-        }
-
-    }
-
     const CourseCardComponent = ({
         courseTitle,
         courseDescription,
@@ -48,7 +24,6 @@ function AllCourses() {
         imgUrl,
         courseId
     }) => {
-        const coursePriceDiscounted = Math.round(coursePrice - (coursePrice * discount / 100));
         return (
             <div className="course-card">
                 <div className="course-image">
@@ -57,13 +32,7 @@ function AllCourses() {
                 <div className="course-details">
                     <h3>{courseTitle}</h3>
                     <p style={{fontSize: '14px'}}>{courseDescription}</p>
-                    <div className="course-price">
-                        <p><b>₹{coursePriceDiscounted}</b></p>
-                        <p>₹{coursePrice}</p>
-                        <p style={{position: 'absolute', right: '1rem', color: '#25c16f'}}><b>{discount}%</b></p>
-                    </div>
-                    <p style={{fontSize: '14px'}}><b>Validity: {validity}</b></p>
-                    <button onClick={() => handle_course_purchase(courseId)} className='buy-btn'>Buy Now</button>
+                    <button onClick={() => setActiveTab('/course-dashboard')} className='course-btn'>Manage Course</button>
                 </div>
             </div>
         )
