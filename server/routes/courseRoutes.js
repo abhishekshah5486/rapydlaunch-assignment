@@ -12,3 +12,5 @@ router.get('/', courseControllers.get_all_courses);
 router.get('/:courseId', courseControllers.get_course_by_id);
 // Retrieve all courses by instructor id
 router.get('/instructor/:instructorId', courseControllers.get_courses_by_instructor_id);
+
+module.exports = router;

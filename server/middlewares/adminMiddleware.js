@@ -2,11 +2,11 @@ const userModel = require('../models/userModel');
 const bcrypt = require('bcryptjs');
 
 const verify_admin_credentials = async (req, res, next) => {
-    const { userId, password } = req.query;
+    const { adminId, password } = req.query;
 
     try {
         
-        const admin = await userModel.findOne({ userId, role: 'admin' });
+        const admin = await userModel.findOne({ userId: adminId, role: 'admin' });
         if (!admin) {
             return res.status(404).json({ message: 'Invalid Admin Id.' });
         }
