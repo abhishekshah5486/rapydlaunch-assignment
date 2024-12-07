@@ -1,70 +1,86 @@
-# Getting Started with Create React App
+# Course Management System
 
-This project was bootstrapped with [Create React App](https://github.com/facebook/create-react-app).
+## Project Setup
 
-## Available Scripts
+### Prerequisites
+- Node.js (v14 or higher)
+- MongoDB (local or cloud instance)
+- npm (Node Package Manager)
 
-In the project directory, you can run:
+### Installation
 
-### `npm start`
+1. **Clone the repository:**
+   ```bash
+   git clone git@github.com:abhishekshah5486/rapydlaunch-assignment.git
+   cd rapydlaunch-assignment
+   ```
 
-Runs the app in the development mode.\
-Open [http://localhost:3000](http://localhost:3000) to view it in your browser.
+2. **Navigate to the server directory:**
+   ```bash
+   cd server
+   ```
 
-The page will reload when you make changes.\
-You may also see any lint errors in the console.
+3. **Install server dependencies:**
+   ```bash
+   npm install
+   ```
 
-### `npm test`
+4. **Set up environment variables:**
+   - Create a `.env` file in the `server` directory and add the following variables:
+     ```plaintext
+     MONGO_URI=<your_mongodb_connection_string>
+     PORT=8081
+     ```
 
-Launches the test runner in the interactive watch mode.\
-See the section about [running tests](https://facebook.github.io/create-react-app/docs/running-tests) for more information.
+5. **Start the server:**
+   ```bash
+   npm run dev
+   ```
 
-### `npm run build`
+6. **Navigate to the client directory:**
+   ```bash
+   cd ../src
+   ```
 
-Builds the app for production to the `build` folder.\
-It correctly bundles React in production mode and optimizes the build for the best performance.
+7. **Install client dependencies:**
+   ```bash
+   npm install
+   ```
 
-The build is minified and the filenames include the hashes.\
-Your app is ready to be deployed!
+8. **Start the client:**
+   ```bash
+   npm start
+   ```
 
-See the section about [deployment](https://facebook.github.io/create-react-app/docs/deployment) for more information.
+## Features Implemented
 
-### `npm run eject`
+- **User Authentication:**
+  - User registration and login functionality.
+  - Role-based access control (students, instructors, and admins).
 
-**Note: this is a one-way operation. Once you `eject`, you can't go back!**
+- **Course Management:**
+  - Create, retrieve, and manage courses.
+  - Enroll students in courses.
 
-If you aren't satisfied with the build tool and configuration choices, you can `eject` at any time. This command will remove the single build dependency from your project.
+- **Responsive UI:**
+  - A user-friendly interface built with React.
+  - Responsive design for various screen sizes.
 
-Instead, it will copy all the configuration files and the transitive dependencies (webpack, Babel, ESLint, etc) right into your project so you have full control over them. All of the commands except `eject` will still work, but they will point to the copied scripts so you can tweak them. At this point you're on your own.
+- **Admin Features:**
+  - Admin can create instructor accounts and manage courses.
 
-You don't have to ever use `eject`. The curated feature set is suitable for small and middle deployments, and you shouldn't feel obligated to use this feature. However we understand that this tool wouldn't be useful if you couldn't customize it when you are ready for it.
+## Additional Features or Notes
 
-## Learn More
+- **Database:**
+  - The application uses MongoDB for data storage. Ensure your MongoDB instance is running before starting the server.
 
-You can learn more in the [Create React App documentation](https://facebook.github.io/create-react-app/docs/getting-started).
+- **Future Enhancements:**
+  - Implement user profile management.
+  - Add course reviews and ratings.
+  - Enhance the UI with more interactive components.
 
-To learn React, check out the [React documentation](https://reactjs.org/).
+## License
+This project is licensed under the MIT License - see the [LICENSE](LICENSE) file for details.
 
-### Code Splitting
-
-This section has moved here: [https://facebook.github.io/create-react-app/docs/code-splitting](https://facebook.github.io/create-react-app/docs/code-splitting)
-
-### Analyzing the Bundle Size
-
-This section has moved here: [https://facebook.github.io/create-react-app/docs/analyzing-the-bundle-size](https://facebook.github.io/create-react-app/docs/analyzing-the-bundle-size)
-
-### Making a Progressive Web App
-
-This section has moved here: [https://facebook.github.io/create-react-app/docs/making-a-progressive-web-app](https://facebook.github.io/create-react-app/docs/making-a-progressive-web-app)
-
-### Advanced Configuration
-
-This section has moved here: [https://facebook.github.io/create-react-app/docs/advanced-configuration](https://facebook.github.io/create-react-app/docs/advanced-configuration)
-
-### Deployment
-
-This section has moved here: [https://facebook.github.io/create-react-app/docs/deployment](https://facebook.github.io/create-react-app/docs/deployment)
-
-### `npm run build` fails to minify
-
-This section has moved here: [https://facebook.github.io/create-react-app/docs/troubleshooting#npm-run-build-fails-to-minify](https://facebook.github.io/create-react-app/docs/troubleshooting#npm-run-build-fails-to-minify)
+## Acknowledgments
+- Thanks to the contributors and libraries that made this project possible.
